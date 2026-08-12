@@ -1,0 +1,149 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Typography utilities */
+.text-h1 {
+  font-size: var(--text-h1-mobile);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.text-h2 {
+  font-size: var(--text-h2-mobile);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.text-h3 {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.text-body-lg {
+  font-size: var(--text-body-lg);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.text-body {
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-small {
+  font-size: var(--text-small);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.text-meta {
+  font-size: var(--text-meta);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+@media (min-width: 768px) {
+  .text-h1 {
+    font-size: var(--text-h1);
+  }
+
+  .text-h2 {
+    font-size: var(--text-h2);
+  }
+}
+
+/* Focus states */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--side-padding);
+  z-index: 200;
+  padding: var(--space-1) var(--space-2);
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: var(--space-1);
+}
+
+/* Section scroll offset for floating nav pill */
+section[id] {
+  scroll-margin-top: var(--nav-scroll-offset);
+}

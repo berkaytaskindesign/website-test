@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Dependencies
+node_modules/
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+credentials.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Berkay Taskin — Product & UX Designer. Portfolio, beliefs, and selected work.">
+  <title>Berkay Taskin — Product & UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a href="#intro" class="skip-link">Skip to content</a>
+
+  <header class="site-nav" role="banner">
+    <div class="site-nav__pill">
+      <nav class="site-nav__links" aria-label="Main navigation" data-nav-links></nav>
+      <button
+        class="site-nav__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+        data-nav-toggle
+      >
+        <span class="site-nav__toggle-bar"></span>
+        <span class="site-nav__toggle-bar"></span>
+        <span class="site-nav__toggle-bar"></span>
+      </button>
+      <nav
+        id="mobile-menu"
+        class="site-nav__overlay"
+        aria-label="Mobile navigation"
+        data-nav-overlay
+      ></nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="intro" class="section hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="text-meta hero__eyebrow" data-hero-eyebrow></p>
+        <h1 id="hero-title" class="text-h1 hero__title" data-hero-title></h1>
+        <p class="hero__subhead" data-hero-subhead></p>
+        <p class="text-body hero__body" data-hero-body></p>
+        <div class="btn-group" data-hero-ctas></div>
+      </div>
+    </section>
+
+    <section id="beliefs" class="section section--alt" aria-labelledby="beliefs-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 id="beliefs-title" class="text-h2 section__title" data-beliefs-title></h2>
+          <p class="text-body text-secondary section__intro" data-beliefs-intro></p>
+        </header>
+        <div class="beliefs-grid" data-beliefs-grid></div>
+      </div>
+    </section>
+
+    <section id="work" class="section" aria-labelledby="work-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 id="work-title" class="text-h2 section__title" data-work-title></h2>
+          <p class="text-body text-secondary section__intro" data-work-intro></p>
+        </header>
+        <div class="work-grid" data-work-grid></div>
+        <div class="work-cta" data-work-cta></div>
+      </div>
+    </section>
+
+    <section id="about" class="section section--alt" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 id="about-title" class="text-h2 section__title" data-about-title></h2>
+        </header>
+        <div class="about__paragraphs" data-about-paragraphs></div>
+        <div class="about__facts" data-about-facts></div>
+      </div>
+    </section>
+
+    <section id="writing" class="section" aria-labelledby="writing-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 id="writing-title" class="text-h2 section__title" data-writing-title></h2>
+          <p class="text-body text-secondary section__intro" data-writing-intro></p>
+        </header>
+        <ul class="writing-list" data-writing-list></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__contact">
+        <span class="text-meta site-footer__contact-label" data-footer-contact-label></span>
+        <a class="site-footer__email" data-footer-email href=""></a>
+      </div>
+      <nav class="site-footer__links" aria-label="Footer links" data-footer-links></nav>
+      <p class="site-footer__copyright" data-footer-copyright></p>
+    </div>
+  </footer>
+
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
