@@ -531,7 +531,7 @@
 .site-footer {
   padding-block: var(--space-6);
   border-top: 1px solid var(--border);
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
 }
 
 .site-footer__intro {
