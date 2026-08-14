@@ -26,3 +26,15 @@ npm-debug.log*
 # Build output
 dist/
 build/
+
+# Local push / tooling artifacts
+.mcp_*
+.push_*
+.couf_*
+.tmp_explore_*
+.bt_profile.b64
+.push_via_api.py
+.mcp_push_runner.py
+.png_push.json
+.push_files_payload.json
+.push_payload.json
