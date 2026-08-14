@@ -1,0 +1,231 @@
+/* About rotate explorations — tall portraits, auto-cycling (not a gallery) */
+
+.about-v--rot .about-v__layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .about-v--rot .about-v__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 13rem);
+    align-items: start;
+    gap: var(--space-6);
+  }
+}
+
+/* Shared rotator frame — tall & narrow */
+.arotate {
+  position: relative;
+  width: 100%;
+  max-width: 13rem;
+  margin-inline: auto;
+}
+
+.arotate__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3.4;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.arotate__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.arotate__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.arotate__dots {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.arotate__dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  background: var(--border);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.arotate__dot.is-active {
+  background: var(--accent);
+  transform: scale(1.15);
+}
+
+.arotate__dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.arotate__hint {
+  font-size: var(--text-meta);
+  color: var(--text-secondary);
+}
+
+.arotate__progress {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.arotate__progress-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--accent);
+}
+
+.arotate__progress-fill.is-running {
+  animation: arotate-progress 6s linear forwards;
+}
+
+@keyframes arotate-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arotate__progress-fill.is-running {
+    animation: none;
+    width: 100%;
+  }
+}
+
+/* Option A — crossfade */
+.arotate--fade .arotate__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.arotate--fade .arotate__slide.is-active {
+  opacity: 1;
+}
+
+/* Option B — vertical slide */
+.arotate--slide .arotate__slide {
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+  transition: transform 500ms ease;
+}
+
+.arotate--slide .arotate__slide.is-active,
+.arotate--slide .arotate__slide.is-entering {
+  transform: translateY(0);
+}
+
+.arotate--slide .arotate__slide.is-exiting {
+  transform: translateY(-100%);
+  transition: transform 500ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arotate--slide .arotate__slide {
+    transition: none;
+    transform: none;
+  }
+
+  .arotate--slide .arotate__slide:not(.is-active) {
+    display: none;
+  }
+}
+
+/* Option C — stacked deck shuffle */
+.arotate--stack .arotate__frame {
+  perspective: 900px;
+}
+
+.arotate--stack .arotate__card {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  transition: transform 550ms ease, opacity 550ms ease;
+  transform-origin: center bottom;
+}
+
+.arotate--stack .arotate__card[data-stack-offset="0"] {
+  z-index: 4;
+  transform: translateX(0) rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.arotate--stack .arotate__card[data-stack-offset="1"] {
+  z-index: 3;
+  transform: translateX(10px) rotate(2.5deg) scale(0.97);
+  opacity: 0.88;
+}
+
+.arotate--stack .arotate__card[data-stack-offset="2"] {
+  z-index: 2;
+  transform: translateX(18px) rotate(4deg) scale(0.94);
+  opacity: 0.72;
+}
+
+.arotate--stack .arotate__card[data-stack-offset="3"] {
+  z-index: 1;
+  transform: translateX(24px) rotate(5deg) scale(0.91);
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arotate--stack .arotate__card {
+    transition: none;
+  }
+
+  .arotate--stack .arotate__card:not(.is-front) {
+    display: none;
+  }
+}
+
+/* Option D — slow pan + crossfade */
+.arotate--kenburns .arotate__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+
+.arotate--kenburns .arotate__slide.is-active {
+  opacity: 1;
+}
+
+.arotate--kenburns .arotate__slide.is-active .arotate__img {
+  animation: arotate-kenburns 6s ease-out forwards;
+}
+
+@keyframes arotate-kenburns {
+  from {
+    transform: scale(1.04);
+    object-position: center 18%;
+  }
+  to {
+    transform: scale(1);
+    object-position: center 42%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arotate--kenburns .arotate__slide.is-active .arotate__img {
+    animation: none;
+  }
+}

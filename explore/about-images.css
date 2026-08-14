@@ -1,0 +1,139 @@
+/* About image explorations — subtle photo treatments (Option D direction) */
+
+/* Option A — shallow ticker strip */
+.about-v--ticker .about-v__ticker {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-1);
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.about-v--ticker .about-v__ticker-cell {
+  height: 4.5rem;
+  overflow: hidden;
+  opacity: 0.65;
+}
+
+.about-v--ticker .about-v__photo {
+  border: none;
+}
+
+/* Option B — muted micro squares, reveal on hover */
+.about-v--micro .about-v__micro-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-4);
+}
+
+.about-v--micro .about-v__micro-cell {
+  width: 3.5rem;
+  height: 3.5rem;
+  overflow: hidden;
+}
+
+.about-v--micro .about-v__photo {
+  filter: grayscale(100%);
+  opacity: 0.45;
+  border-color: color-mix(in srgb, var(--border) 70%, transparent);
+  transition: filter var(--transition-base), opacity var(--transition-base), border-color var(--transition-fast);
+}
+
+.about-v--micro .about-v__micro-cell:hover .about-v__photo,
+.about-v--micro .about-v__micro-cell:focus-within .about-v__photo {
+  filter: grayscale(0%);
+  opacity: 1;
+  border-color: var(--border);
+}
+
+.about-v--micro .about-v__micro-caption {
+  margin-top: var(--space-2);
+  font-size: var(--text-meta);
+  color: var(--text-secondary);
+}
+
+/* Option C — single small accent photo */
+.about-v--single .about-v__prose-wrap {
+  max-width: 42rem;
+}
+
+.about-v--single .about-v__prose {
+  max-width: none;
+}
+
+.about-v--single .about-v__accent {
+  float: right;
+  width: 7.5rem;
+  margin: 0 0 var(--space-2) var(--space-3);
+  overflow: hidden;
+}
+
+.about-v--single .about-v__accent .about-v__photo {
+  aspect-ratio: 1;
+  opacity: 0.85;
+}
+
+.about-v--single .about-v__prose-wrap::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (min-width: 768px) {
+  .about-v--single .about-v__accent {
+    width: 9rem;
+    margin-left: var(--space-4);
+  }
+}
+
+/* Option D — micro circles inline */
+.about-v--dots .about-v__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.about-v--dots .about-v__dots-label {
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.about-v--dots .about-v__dots-row {
+  display: flex;
+  gap: 6px;
+}
+
+.about-v--dots .about-v__dot {
+  width: 2.75rem;
+  height: 2.75rem;
+  overflow: hidden;
+  border-radius: 50% !important;
+  border: 1px solid var(--border);
+  opacity: 0.7;
+  transition: opacity var(--transition-fast), border-color var(--transition-fast);
+}
+
+.about-v--dots .about-v__dot:hover,
+.about-v--dots .about-v__dot:focus-within {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.about-v--dots .about-v__dot .about-v__photo {
+  border: none;
+}
+
+@media (max-width: 479px) {
+  .about-v--dots .about-v__dots {
+    flex-wrap: wrap;
+  }
+}

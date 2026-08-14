@@ -1,0 +1,338 @@
+/* Hero photo layout explorations — not used on production index */
+
+.explore-page {
+  padding-bottom: var(--space-8);
+}
+
+/* Page chrome */
+.explore-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding-block: var(--space-3);
+  background: color-mix(in srgb, var(--bg-primary) 92%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.explore-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.explore-header__title {
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.explore-header__back {
+  font-size: var(--text-small);
+  color: var(--accent);
+  transition: color var(--transition-fast);
+}
+
+.explore-header__back:hover,
+.explore-header__back:focus-visible {
+  color: var(--accent-hover);
+}
+
+.explore-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.explore-nav__link {
+  padding: 6px 10px;
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.explore-nav__link:hover,
+.explore-nav__link:focus-visible {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.explore-section-label {
+  padding-block: var(--space-4) var(--space-2);
+  font-size: var(--text-meta);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Variant sections */
+.explore-variant {
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+
+.explore-variant:last-child {
+  border-bottom: none;
+}
+
+.explore-variant__meta {
+  margin-bottom: var(--space-4);
+}
+
+.explore-variant__label {
+  display: inline-block;
+  margin-bottom: var(--space-1);
+  font-size: var(--text-meta);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.explore-variant__title {
+  margin-bottom: var(--space-1);
+  font-size: var(--text-h3);
+  font-weight: 600;
+}
+
+.explore-variant__desc {
+  max-width: 40rem;
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+}
+
+/* Preview frame */
+.explore-preview {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+}
+
+.explore-preview__nav {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--nav-pill-top);
+  padding-bottom: var(--space-2);
+}
+
+.explore-preview__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: var(--nav-pill-height);
+  padding-inline: var(--space-3);
+  font-family: var(--nav-pill-font);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--nav-pill-bg);
+  border: 1px solid var(--nav-pill-border);
+  box-shadow: var(--nav-pill-shadow);
+  border-radius: var(--nav-pill-radius) !important;
+}
+
+/* Shared hero block */
+.hero-v {
+  padding-block: var(--hero-padding-top) var(--section-padding-y-mobile);
+}
+
+.hero-v__eyebrow {
+  margin-bottom: var(--space-2);
+  text-transform: uppercase;
+}
+
+.hero-v__title {
+  margin-bottom: var(--space-2);
+}
+
+.hero-v__subhead {
+  font-size: var(--text-body-lg);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 36rem;
+  margin-bottom: var(--space-3);
+}
+
+.hero-v__body {
+  max-width: 42rem;
+  color: var(--text-secondary);
+}
+
+.hero-v__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+}
+
+/* Circular photo — overrides global border-radius: 0 */
+.hero-v__media {
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50% !important;
+}
+
+.hero-v__media .hero-v__photo {
+  border-radius: 50% !important;
+}
+
+/* Size scale */
+.hero-v__media--xs { width: 3rem; height: 3rem; }
+.hero-v__media--sm { width: 3.5rem; height: 3.5rem; }
+.hero-v__media--md { width: 4.5rem; height: 4.5rem; }
+.hero-v__media--lg { width: 5.5rem; height: 5.5rem; }
+.hero-v__media--xl { width: 7rem; height: 7rem; }
+
+@media (min-width: 768px) {
+  .hero-v {
+    padding-block: calc(var(--hero-padding-top) + var(--space-3)) var(--section-padding-y);
+  }
+
+  .hero-v__media--xs { width: 3.25rem; height: 3.25rem; }
+  .hero-v__media--sm { width: 4rem; height: 4rem; }
+  .hero-v__media--md { width: 5rem; height: 5rem; }
+  .hero-v__media--lg { width: 6rem; height: 6rem; }
+  .hero-v__media--xl { width: 7.5rem; height: 7.5rem; }
+}
+
+/* A — two-column, small circle right */
+.hero-v--a .hero-v__inner {
+  display: grid;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hero-v--a .hero-v__inner {
+    grid-template-columns: 1fr auto;
+    gap: var(--space-5);
+  }
+
+  .hero-v--a .hero-v__media {
+    justify-self: end;
+  }
+}
+
+/* B — small circle above eyebrow */
+.hero-v--b .hero-v__media {
+  margin-bottom: var(--space-3);
+  border: 1px solid var(--border);
+}
+
+/* C — circle beside name */
+.hero-v--c .hero-v__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.hero-v--c .hero-v__title-row .hero-v__title {
+  margin-bottom: 0;
+}
+
+.hero-v--c .hero-v__media {
+  border: 1px solid var(--border);
+}
+
+/* D — circle right with accent ring */
+.hero-v--d .hero-v__inner {
+  display: grid;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.hero-v--d .hero-v__media {
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+@media (min-width: 768px) {
+  .hero-v--d .hero-v__inner {
+    grid-template-columns: 1fr auto;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  .hero-v--d .hero-v__media {
+    justify-self: end;
+  }
+}
+
+/* E — circle inline with eyebrow */
+.hero-v--e .hero-v__eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.hero-v--e .hero-v__eyebrow-row .hero-v__eyebrow {
+  margin-bottom: 0;
+}
+
+.hero-v--e .hero-v__media {
+  border: 1px solid var(--border);
+}
+
+/* F — circle between eyebrow and title */
+.hero-v--f .hero-v__media {
+  margin-bottom: var(--space-2);
+  border: 1px solid var(--border);
+}
+
+/* G — circle floated top-right */
+.hero-v--g .hero-v__content {
+  position: relative;
+}
+
+.hero-v--g .hero-v__media {
+  float: right;
+  margin-left: var(--space-3);
+  margin-bottom: var(--space-2);
+  border: 1px solid var(--border);
+}
+
+.hero-v--g .hero-v__content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* H — compact profile row: circle + eyebrow/title stack */
+.hero-v--h .hero-v__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.hero-v--h .hero-v__header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-v--h .hero-v__header .hero-v__eyebrow {
+  margin-bottom: var(--space-1);
+}
+
+.hero-v--h .hero-v__header .hero-v__title {
+  margin-bottom: 0;
+}
+
+.hero-v--h .hero-v__media {
+  border: 1px solid var(--border);
+}

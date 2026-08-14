@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Design explorations — Berkay Taskin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <style>
+    .explore-index {
+      padding-block: var(--space-6);
+    }
+
+    .explore-index__back {
+      display: inline-block;
+      margin-bottom: var(--space-4);
+      font-size: var(--text-small);
+      color: var(--accent);
+    }
+
+    .explore-index__title {
+      margin-bottom: var(--space-2);
+    }
+
+    .explore-index__intro {
+      max-width: 36rem;
+      margin-bottom: var(--space-5);
+      color: var(--text-secondary);
+    }
+
+    .explore-index__list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      max-width: 28rem;
+    }
+
+    .explore-index__link {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--text-body);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      transition: border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .explore-index__link:hover,
+    .explore-index__link:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .explore-index__link-desc {
+      font-size: var(--text-meta);
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .explore-index__link:hover .explore-index__link-desc,
+    .explore-index__link:focus-visible .explore-index__link-desc {
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <main class="explore-index">
+    <div class="container">
+      <a class="explore-index__back" href="../index.html">← Back to site</a>
+      <h1 class="text-h2 explore-index__title">Design explorations</h1>
+      <p class="text-body explore-index__intro">Layout and interaction options for review before integrating into the main site.</p>
+      <nav class="explore-index__list" aria-label="Exploration pages">
+        <a class="explore-index__link" href="about.html">
+          <span>About</span>
+          <span class="explore-index__link-desc">4 personal intro layouts</span>
+        </a>
+        <a class="explore-index__link" href="about-rotate.html">
+          <span>About rotate</span>
+          <span class="explore-index__link-desc">4 auto-cycling portrait layouts</span>
+        </a>
+        <a class="explore-index__link" href="about-gallery.html">
+          <span>About gallery</span>
+          <span class="explore-index__link-desc">4 interactive photo layouts</span>
+        </a>
+        <a class="explore-index__link" href="about-images.html">
+          <span>About images</span>
+          <span class="explore-index__link-desc">4 subtle photo treatments</span>
+        </a>
+        <a class="explore-index__link" href="hero-photo.html">
+          <span>Hero photo</span>
+          <span class="explore-index__link-desc">8 placement options</span>
+        </a>
+        <a class="explore-index__link" href="references.html">
+          <span>References</span>
+          <span class="explore-index__link-desc">4 carousel styles</span>
+        </a>
+        <a class="explore-index__link" href="work-cards.html">
+          <span>Work cards</span>
+          <span class="explore-index__link-desc">4 hover treatments</span>
+        </a>
+      </nav>
+    </div>
+  </main>
+</body>
+</html>

@@ -16,38 +16,19 @@
 <body>
   <a href="#intro" class="skip-link">Skip to content</a>
 
-  <header class="site-nav" role="banner">
-    <div class="site-nav__pill">
-      <nav class="site-nav__links" aria-label="Main navigation" data-nav-links></nav>
-      <button
-        class="site-nav__toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Open menu"
-        data-nav-toggle
-      >
-        <span class="site-nav__toggle-bar"></span>
-        <span class="site-nav__toggle-bar"></span>
-        <span class="site-nav__toggle-bar"></span>
-      </button>
-      <nav
-        id="mobile-menu"
-        class="site-nav__overlay"
-        aria-label="Mobile navigation"
-        data-nav-overlay
-      ></nav>
-    </div>
-  </header>
-
   <main>
     <section id="intro" class="section hero" aria-labelledby="hero-title">
       <div class="container">
+        <figure class="hero__photo-wrap">
+          <img class="hero__photo" src="assets/bt_profile.png" alt="Portrait of Berkay Taskin" width="88" height="88" data-hero-photo>
+        </figure>
         <p class="text-meta hero__eyebrow" data-hero-eyebrow></p>
         <h1 id="hero-title" class="text-h1 hero__title" data-hero-title></h1>
         <p class="hero__subhead" data-hero-subhead></p>
         <p class="text-body hero__body" data-hero-body></p>
-        <div class="btn-group" data-hero-ctas></div>
+        <div class="hero__cta">
+          <a href="#work" class="btn btn--primary" data-hero-cta>See my work</a>
+        </div>
       </div>
     </section>
 
@@ -68,39 +49,60 @@
           <p class="text-body text-secondary section__intro" data-work-intro></p>
         </header>
         <div class="work-grid" data-work-grid></div>
-        <div class="work-cta" data-work-cta></div>
       </div>
     </section>
 
-    <section id="about" class="section section--alt" aria-labelledby="about-title">
+    <section id="references" class="section section--alt" aria-labelledby="references-title">
       <div class="container">
         <header class="section__header">
-          <h2 id="about-title" class="text-h2 section__title" data-about-title></h2>
+          <h2 id="references-title" class="text-h2 section__title" data-references-title></h2>
+          <p class="text-body text-secondary section__intro" data-references-intro></p>
         </header>
-        <div class="about__paragraphs" data-about-paragraphs></div>
-        <div class="about__facts" data-about-facts></div>
+        <div class="refs" data-references-root></div>
       </div>
     </section>
 
-    <section id="writing" class="section" aria-labelledby="writing-title">
+    <section id="services" class="section" aria-labelledby="services-title" hidden>
+      <div class="container">
+        <header class="section__header">
+          <h2 id="services-title" class="text-h2 section__title" data-services-title></h2>
+          <p class="text-body text-secondary section__intro" data-services-intro></p>
+        </header>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title" class="text-h2 section__title about__title" data-about-title></h2>
+        <div class="about__layout">
+          <div class="about__prose" data-about-paragraphs></div>
+          <div class="about__stack" data-about-stack aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="thoughts" class="section section--alt" aria-labelledby="writing-title">
       <div class="container">
         <header class="section__header">
           <h2 id="writing-title" class="text-h2 section__title" data-writing-title></h2>
           <p class="text-body text-secondary section__intro" data-writing-intro></p>
         </header>
         <ul class="writing-list" data-writing-list></ul>
+        <div class="writing-more" data-writing-more hidden>
+          <button type="button" class="btn btn--secondary" data-writing-more-btn></button>
+        </div>
       </div>
     </section>
   </main>
 
   <footer id="contact" class="site-footer" role="contentinfo">
     <div class="container">
-      <div class="site-footer__contact">
-        <span class="text-meta site-footer__contact-label" data-footer-contact-label></span>
-        <a class="site-footer__email" data-footer-email href=""></a>
+      <div class="site-footer__intro">
+        <p class="text-meta site-footer__role" data-footer-role></p>
+        <p class="site-footer__name" data-footer-title></p>
       </div>
+      <p class="text-meta site-footer__contact-label" data-footer-contact-label></p>
       <nav class="site-footer__links" aria-label="Footer links" data-footer-links></nav>
-      <p class="site-footer__copyright" data-footer-copyright></p>
     </div>
   </footer>
 

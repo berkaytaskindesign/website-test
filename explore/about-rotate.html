@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>About rotate explorations — Berkay Taskin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="about.css">
+  <link rel="stylesheet" href="about-rotate.css">
+</head>
+<body class="explore-page">
+  <header class="explore-header">
+    <div class="container explore-header__inner">
+      <div>
+        <p class="explore-header__title">About rotate explorations</p>
+        <a class="explore-header__back" href="about.html#option-a">← About layouts</a>
+        <a class="explore-header__back" href="../index.html" style="margin-left: var(--space-2);">Site</a>
+      </div>
+      <nav class="explore-nav" aria-label="Jump to variant">
+        <a class="explore-nav__link" href="#option-a">A</a>
+        <a class="explore-nav__link" href="#option-b">B</a>
+        <a class="explore-nav__link" href="#option-c">C</a>
+        <a class="explore-nav__link" href="#option-d">D</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <section class="explore-variant" style="border-bottom: none; padding-bottom: 0;">
+    <div class="container explore-variant__meta">
+      <p class="explore-variant__label">Context</p>
+      <h1 class="explore-variant__title">Tall portraits that rotate — not a gallery</h1>
+      <p class="explore-variant__desc">Prose on the left, a narrow tall frame on the right. Images cycle automatically every 6s (hover to pause). No thumbnails — one photo in focus, the rest rotate in.</p>
+    </div>
+  </section>
+
+  <!-- Option A -->
+  <section id="option-a" class="explore-variant">
+    <div class="container explore-variant__meta">
+      <p class="explore-variant__label">Option A</p>
+      <h1 class="explore-variant__title">Crossfade</h1>
+      <p class="explore-variant__desc">One tall portrait dissolves into the next. Minimal motion, maximum focus on you.</p>
+    </div>
+    <div class="explore-preview">
+      <div class="explore-preview__nav" aria-hidden="true">
+        <div class="explore-preview__pill">Work · References · Thoughts</div>
+      </div>
+      <div class="about-v__context container" aria-hidden="true">
+        <p class="about-v__context-label">References — end of section</p>
+      </div>
+      <section class="section about-v about-v--rot" aria-label="Option A preview">
+        <div class="container">
+          <h2 class="text-h2 about-v__title">About me</h2>
+          <div class="about-v__layout">
+            <div class="about-v__prose">
+              <p class="text-body">Born in Turkey, I've lived in the USA, Sweden, and Finland before settling in the Netherlands in 2014. When I'm not designing or facilitating workshops, I'm usually surfing, exploring new places, or bringing people together around design and innovation.</p>
+              <p class="text-body">When it comes to products, I like Spotify for the way it enhances both my solo moments and time with friends, and I dislike plastic shoehorns because they rarely do the one simple task they were designed for.</p>
+            </div>
+            <div class="arotate arotate--fade" data-rotate="fade" aria-live="polite">
+              <div class="arotate__frame">
+                <figure class="arotate__slide is-active" data-rotate-slide><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/6ec9d1a1-65fe-47e1-8bdb-8c5ea0279f97.png" alt="Berkay wearing sunglasses" width="208" height="354" loading="eager"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/9f0252ed-e0c5-417a-a67f-8209ff85f9f4.png" alt="Berkay walking with a surfboard" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/0424c991-e065-44f3-b10e-b3003982c02b.png" alt="Berkay full-body portrait" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/31a8af38-323f-4d46-a166-1bdf2fe24bbc.png" alt="Berkay surfing" width="208" height="354" loading="lazy"></figure>
+              </div>
+              <div class="arotate__footer">
+                <ul class="arotate__dots" aria-label="Photo position">
+                  <li><button type="button" class="arotate__dot is-active" data-rotate-dot="0" aria-current="true" aria-label="Photo 1 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="1" aria-label="Photo 2 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="2" aria-label="Photo 3 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="3" aria-label="Photo 4 of 4"></button></li>
+                </ul>
+                <div class="arotate__progress" aria-hidden="true"><div class="arotate__progress-fill" data-rotate-progress></div></div>
+              </div>
+              <p class="arotate__hint">Auto-rotates every 6s · hover to pause</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- Option B -->
+  <section id="option-b" class="explore-variant">
+    <div class="container explore-variant__meta">
+      <p class="explore-variant__label">Option B</p>
+      <h1 class="explore-variant__title">Vertical reel</h1>
+      <p class="explore-variant__desc">The next photo slides up through the tall frame — like a vertical film strip advancing.</p>
+    </div>
+    <div class="explore-preview">
+      <div class="explore-preview__nav" aria-hidden="true">
+        <div class="explore-preview__pill">Work · References · Thoughts</div>
+      </div>
+      <div class="about-v__context container" aria-hidden="true">
+        <p class="about-v__context-label">References — end of section</p>
+      </div>
+      <section class="section about-v about-v--rot" aria-label="Option B preview">
+        <div class="container">
+          <h2 class="text-h2 about-v__title">About me</h2>
+          <div class="about-v__layout">
+            <div class="about-v__prose">
+              <p class="text-body">Born in Turkey, I've lived in the USA, Sweden, and Finland before settling in the Netherlands in 2014. When I'm not designing or facilitating workshops, I'm usually surfing, exploring new places, or bringing people together around design and innovation.</p>
+              <p class="text-body">When it comes to products, I like Spotify for the way it enhances both my solo moments and time with friends, and I dislike plastic shoehorns because they rarely do the one simple task they were designed for.</p>
+            </div>
+            <div class="arotate arotate--slide" data-rotate="slide" aria-live="polite">
+              <div class="arotate__frame">
+                <figure class="arotate__slide is-active" data-rotate-slide><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/6ec9d1a1-65fe-47e1-8bdb-8c5ea0279f97.png" alt="Berkay wearing sunglasses" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/9f0252ed-e0c5-417a-a67f-8209ff85f9f4.png" alt="Berkay walking with a surfboard" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/0424c991-e065-44f3-b10e-b3003982c02b.png" alt="Berkay full-body portrait" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/31a8af38-323f-4d46-a166-1bdf2fe24bbc.png" alt="Berkay surfing" width="208" height="354" loading="lazy"></figure>
+              </div>
+              <div class="arotate__footer">
+                <ul class="arotate__dots" aria-label="Photo position">
+                  <li><button type="button" class="arotate__dot is-active" data-rotate-dot="0" aria-current="true" aria-label="Photo 1 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="1" aria-label="Photo 2 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="2" aria-label="Photo 3 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="3" aria-label="Photo 4 of 4"></button></li>
+                </ul>
+                <div class="arotate__progress" aria-hidden="true"><div class="arotate__progress-fill" data-rotate-progress></div></div>
+              </div>
+              <p class="arotate__hint">Auto-rotates every 6s · hover to pause</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- Option C -->
+  <section id="option-c" class="explore-variant">
+    <div class="container explore-variant__meta">
+      <p class="explore-variant__label">Option C</p>
+      <h1 class="explore-variant__title">Stack shuffle</h1>
+      <p class="explore-variant__desc">Tall cards stacked with a slight fan. Each cycle brings the next card to the front — you see edges of what's coming without a gallery UI.</p>
+    </div>
+    <div class="explore-preview">
+      <div class="explore-preview__nav" aria-hidden="true">
+        <div class="explore-preview__pill">Work · References · Thoughts</div>
+      </div>
+      <div class="about-v__context container" aria-hidden="true">
+        <p class="about-v__context-label">References — end of section</p>
+      </div>
+      <section class="section about-v about-v--rot" aria-label="Option C preview">
+        <div class="container">
+          <h2 class="text-h2 about-v__title">About me</h2>
+          <div class="about-v__layout">
+            <div class="about-v__prose">
+              <p class="text-body">Born in Turkey, I've lived in the USA, Sweden, and Finland before settling in the Netherlands in 2014. When I'm not designing or facilitating workshops, I'm usually surfing, exploring new places, or bringing people together around design and innovation.</p>
+              <p class="text-body">When it comes to products, I like Spotify for the way it enhances both my solo moments and time with friends, and I dislike plastic shoehorns because they rarely do the one simple task they were designed for.</p>
+            </div>
+            <div class="arotate arotate--stack" data-rotate="stack" aria-live="polite">
+              <div class="arotate__frame">
+                <figure class="arotate__card is-front" data-rotate-card data-stack-offset="0"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/6ec9d1a1-65fe-47e1-8bdb-8c5ea0279f97.png" alt="Berkay wearing sunglasses" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__card" data-rotate-card data-stack-offset="1" aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/9f0252ed-e0c5-417a-a67f-8209ff85f9f4.png" alt="" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__card" data-rotate-card data-stack-offset="2" aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/0424c991-e065-44f3-b10e-b3003982c02b.png" alt="" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__card" data-rotate-card data-stack-offset="3" aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/31a8af38-323f-4d46-a166-1bdf2fe24bbc.png" alt="" width="208" height="354" loading="lazy"></figure>
+              </div>
+              <div class="arotate__footer">
+                <ul class="arotate__dots" aria-label="Photo position">
+                  <li><button type="button" class="arotate__dot is-active" data-rotate-dot="0" aria-current="true" aria-label="Photo 1 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="1" aria-label="Photo 2 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="2" aria-label="Photo 3 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="3" aria-label="Photo 4 of 4"></button></li>
+                </ul>
+                <div class="arotate__progress" aria-hidden="true"><div class="arotate__progress-fill" data-rotate-progress></div></div>
+              </div>
+              <p class="arotate__hint">Auto-rotates every 6s · hover to pause</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- Option D -->
+  <section id="option-d" class="explore-variant">
+    <div class="container explore-variant__meta">
+      <p class="explore-variant__label">Option D</p>
+      <h1 class="explore-variant__title">Slow pan + crossfade</h1>
+      <p class="explore-variant__desc">Each portrait gently pans downward while on screen, then crossfades to the next. Editorial and alive without feeling like a slideshow control panel.</p>
+    </div>
+    <div class="explore-preview">
+      <div class="explore-preview__nav" aria-hidden="true">
+        <div class="explore-preview__pill">Work · References · Thoughts</div>
+      </div>
+      <div class="about-v__context container" aria-hidden="true">
+        <p class="about-v__context-label">References — end of section</p>
+      </div>
+      <section class="section about-v about-v--rot" aria-label="Option D preview">
+        <div class="container">
+          <h2 class="text-h2 about-v__title">About me</h2>
+          <div class="about-v__layout">
+            <div class="about-v__prose">
+              <p class="text-body">Born in Turkey, I've lived in the USA, Sweden, and Finland before settling in the Netherlands in 2014. When I'm not designing or facilitating workshops, I'm usually surfing, exploring new places, or bringing people together around design and innovation.</p>
+              <p class="text-body">When it comes to products, I like Spotify for the way it enhances both my solo moments and time with friends, and I dislike plastic shoehorns because they rarely do the one simple task they were designed for.</p>
+            </div>
+            <div class="arotate arotate--kenburns" data-rotate="kenburns" aria-live="polite">
+              <div class="arotate__frame">
+                <figure class="arotate__slide is-active" data-rotate-slide><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/6ec9d1a1-65fe-47e1-8bdb-8c5ea0279f97.png" alt="Berkay wearing sunglasses" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/9f0252ed-e0c5-417a-a67f-8209ff85f9f4.png" alt="Berkay walking with a surfboard" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/0424c991-e065-44f3-b10e-b3003982c02b.png" alt="Berkay full-body portrait" width="208" height="354" loading="lazy"></figure>
+                <figure class="arotate__slide" data-rotate-slide hidden aria-hidden="true"><img class="arotate__img" src="https://www.berkaytaskin.com/lovable-uploads/31a8af38-323f-4d46-a166-1bdf2fe24bbc.png" alt="Berkay surfing" width="208" height="354" loading="lazy"></figure>
+              </div>
+              <div class="arotate__footer">
+                <ul class="arotate__dots" aria-label="Photo position">
+                  <li><button type="button" class="arotate__dot is-active" data-rotate-dot="0" aria-current="true" aria-label="Photo 1 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="1" aria-label="Photo 2 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="2" aria-label="Photo 3 of 4"></button></li>
+                  <li><button type="button" class="arotate__dot" data-rotate-dot="3" aria-label="Photo 4 of 4"></button></li>
+                </ul>
+                <div class="arotate__progress" aria-hidden="true"><div class="arotate__progress-fill" data-rotate-progress></div></div>
+              </div>
+              <p class="arotate__hint">Auto-rotates every 6s · hover to pause</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+  </main>
+
+  <script src="about-rotate.js"></script>
+</body>
+</html>

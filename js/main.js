@@ -14,31 +14,6 @@
     return div.innerHTML;
   }
 
-  function renderNav() {
-    const { nav } = content;
-
-    const linksContainer = $("[data-nav-links]");
-    const overlayContainer = $("[data-nav-overlay]");
-
-    if (linksContainer) {
-      linksContainer.innerHTML = nav.links
-        .map(
-          (link) =>
-            `<a href="${escapeHtml(link.href)}" class="site-nav__link">${escapeHtml(link.label)}</a>`
-        )
-        .join("");
-    }
-
-    if (overlayContainer) {
-      overlayContainer.innerHTML = nav.links
-        .map(
-          (link) =>
-            `<a href="${escapeHtml(link.href)}" class="site-nav__overlay-link">${escapeHtml(link.label)}</a>`
-        )
-        .join("");
-    }
-  }
-
   function renderHero() {
     const { hero } = content;
 
@@ -46,20 +21,20 @@
     const title = $("[data-hero-title]");
     const subhead = $("[data-hero-subhead]");
     const body = $("[data-hero-body]");
-    const ctas = $("[data-hero-ctas]");
+    const photo = $("[data-hero-photo]");
+    const cta = $("[data-hero-cta]");
 
     if (eyebrow) eyebrow.textContent = hero.eyebrow;
     if (title) title.textContent = hero.title;
     if (subhead) subhead.textContent = hero.subhead;
     if (body) body.textContent = hero.body;
-
-    if (ctas && hero.ctas) {
-      ctas.innerHTML = hero.ctas
-        .map(
-          (cta) =>
-            `<a href="${escapeHtml(cta.href)}" class="btn btn--${escapeHtml(cta.variant)}">${escapeHtml(cta.label)}</a>`
-        )
-        .join("");
+    if (photo && hero.image) {
+      photo.src = hero.image;
+      photo.alt = hero.imageAlt || "";
+    }
+    if (cta && hero.cta) {
+      cta.textContent = hero.cta.label;
+      cta.href = hero.cta.href;
     }
   }
 
@@ -94,7 +69,6 @@
     const title = $("[data-work-title]");
     const intro = $("[data-work-intro]");
     const grid = $("[data-work-grid]");
-    const cta = $("[data-work-cta]");
 
     if (title) title.textContent = work.title;
     if (intro) intro.textContent = work.intro;
@@ -124,10 +98,151 @@
         )
         .join("");
     }
+  }
 
-    if (cta && work.cta) {
-      cta.innerHTML = `<a href="${escapeHtml(work.cta.href)}" class="btn btn--secondary">${escapeHtml(work.cta.label)}</a>`;
+  function renderReferences() {
+    const { references } = content;
+    if (!references) return;
+
+    const title = $("[data-references-title]");
+    const intro = $("[data-references-intro]");
+    const root = $("[data-references-root]");
+
+    if (title) title.textContent = references.title;
+    if (intro) intro.textContent = references.intro;
+
+    if (!root) return;
+
+    const tabsHtml = references.items
+      .map(
+        (item, i) =>
+          `<button type="button" class="refs__tab${i === 0 ? " is-active" : ""}" data-refs-tab="${i}" aria-selected="${i === 0 ? "true" : "false"}">${escapeHtml(item.company)}</button>`
+      )
+      .join("");
+
+    const slidesHtml = references.items
+      .map((item, i) => {
+        const hidden = i === 0 ? "" : ' hidden aria-hidden="true"';
+        const projectLink = item.projectHref
+          ? `<a href="${escapeHtml(item.projectHref)}" class="refs__project-link" target="_blank" rel="noopener noreferrer">${escapeHtml(item.projectLabel || "View project")} →</a>`
+          : "";
+        return `
+          <blockquote class="refs__slide${i === 0 ? " is-active" : ""}" data-refs-slide="${i}"${hidden ? " " + hidden.trim() : ""}>
+            <p class="refs__text">${escapeHtml(item.text)}</p>
+            <footer class="refs__attribution">
+              <div class="refs__rule" aria-hidden="true">
+                <div class="refs__rule-fill" data-refs-progress></div>
+              </div>
+              <div class="refs__attribution-row">
+                <div>
+                  <p class="refs__name">${escapeHtml(item.name)}</p>
+                  <p class="refs__role">${escapeHtml(item.role)}</p>
+                </div>
+                ${projectLink}
+              </div>
+            </footer>
+          </blockquote>
+        `;
+      })
+      .join("");
+
+    root.innerHTML = `
+      <div class="refs__carousel" data-refs-carousel tabindex="0" style="--refs-interval: ${references.intervalMs || 10000}ms">
+        <div class="refs__tabs" role="tablist" aria-label="Select company">${tabsHtml}</div>
+        <div class="refs__viewport">
+          <div class="refs__track">${slidesHtml}</div>
+        </div>
+      </div>
+    `;
+
+    initReferencesCarousel(root.querySelector("[data-refs-carousel]"), references);
+  }
+
+  function initReferencesCarousel(carousel, references) {
+    if (!carousel) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tabs = carousel.querySelectorAll("[data-refs-tab]");
+    const slides = () => carousel.querySelectorAll("[data-refs-slide]");
+    const total = references.items.length;
+    let index = 0;
+    let isPaused = false;
+
+    function restartProgress(slide) {
+      if (reducedMotion || !slide) return;
+      const fill = slide.querySelector("[data-refs-progress]");
+      if (!fill) return;
+      fill.classList.remove("is-running");
+      fill.style.width = "0%";
+      void fill.offsetWidth;
+      fill.classList.add("is-running");
     }
+
+    function goTo(nextIndex) {
+      index = (nextIndex + total) % total;
+      const allSlides = slides();
+
+      allSlides.forEach((slide, i) => {
+        const active = i === index;
+        slide.hidden = !active;
+        slide.setAttribute("aria-hidden", active ? "false" : "true");
+        slide.classList.toggle("is-active", active);
+        const fill = slide.querySelector("[data-refs-progress]");
+        if (fill) fill.classList.remove("is-running");
+      });
+
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle("is-active", i === index);
+        tab.setAttribute("aria-selected", i === index ? "true" : "false");
+      });
+
+      const activeSlide = allSlides[index];
+      restartProgress(activeSlide);
+    }
+
+    function pause() {
+      isPaused = true;
+      carousel.classList.add("is-paused");
+    }
+
+    function resume() {
+      isPaused = false;
+      carousel.classList.remove("is-paused");
+      restartProgress(slides()[index]);
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => goTo(i));
+    });
+
+    carousel.addEventListener("mouseenter", pause);
+    carousel.addEventListener("mouseleave", resume);
+    carousel.addEventListener("focusin", pause);
+    carousel.addEventListener("focusout", (e) => {
+      if (!carousel.contains(e.relatedTarget)) resume();
+    });
+
+    slides().forEach((slide) => {
+      const fill = slide.querySelector("[data-refs-progress]");
+      if (!fill) return;
+      fill.addEventListener("animationend", (e) => {
+        if (e.target !== fill || isPaused || reducedMotion) return;
+        if (slide.classList.contains("is-active")) goTo(index + 1);
+      });
+    });
+
+    goTo(0);
+  }
+
+  function renderServices() {
+    const { services } = content;
+    if (!services) return;
+
+    const title = $("[data-services-title]");
+    const intro = $("[data-services-intro]");
+
+    if (title) title.textContent = services.title;
+    if (intro) intro.textContent = services.intro;
   }
 
   function renderAbout() {
@@ -135,7 +250,7 @@
 
     const title = $("[data-about-title]");
     const paragraphs = $("[data-about-paragraphs]");
-    const facts = $("[data-about-facts]");
+    const stack = $("[data-about-stack]");
 
     if (title) title.textContent = about.title;
 
@@ -145,21 +260,75 @@
         .join("");
     }
 
-    if (facts) {
-      facts.innerHTML = about.facts
-        .map((fact) => {
-          const value = fact.href
-            ? `<a href="${escapeHtml(fact.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(fact.value)}</a>`
-            : escapeHtml(fact.value);
-          return `
-            <div class="about__fact">
-              <span class="text-meta about__fact-label">${escapeHtml(fact.label)}</span>
-              <span class="about__fact-value">${value}</span>
-            </div>
-          `;
-        })
+    if (stack && about.photos?.length) {
+      const cards = about.photos
+        .map(
+          (photo, i) => `
+            <figure class="about__stack-card${i === 0 ? " is-front" : ""}" data-about-card data-stack-offset="${i}"${i === 0 ? "" : ' aria-hidden="true"'}>
+              <img
+                class="about__stack-img"
+                src="${escapeHtml(photo.src)}"
+                alt="${escapeHtml(photo.alt)}"
+                width="208"
+                height="296"
+                loading="${i === 0 ? "eager" : "lazy"}"
+              >
+            </figure>
+          `
+        )
         .join("");
+
+      stack.innerHTML = `<div class="about__stack-frame">${cards}</div>`;
     }
+  }
+
+  function initAboutStack() {
+    const root = $("[data-about-stack]");
+    if (!root) return;
+
+    const cards = Array.from(root.querySelectorAll("[data-about-card]"));
+    const total = cards.length;
+    if (!total) return;
+
+    const INTERVAL_MS = 4000;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = 0;
+    let timer = null;
+    let isPaused = false;
+
+    function goTo(nextIndex) {
+      index = (nextIndex + total) % total;
+      cards.forEach((card, i) => {
+        const offset = (i - index + total) % total;
+        card.dataset.stackOffset = String(offset);
+        card.classList.toggle("is-front", offset === 0);
+        card.setAttribute("aria-hidden", offset === 0 ? "false" : "true");
+      });
+    }
+
+    function startTimer() {
+      if (reducedMotion || isPaused) return;
+      clearInterval(timer);
+      timer = window.setInterval(() => goTo(index + 1), INTERVAL_MS);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    root.addEventListener("mouseenter", () => {
+      isPaused = true;
+      stopTimer();
+    });
+
+    root.addEventListener("mouseleave", () => {
+      isPaused = false;
+      startTimer();
+    });
+
+    goTo(0);
+    startTimer();
   }
 
   function renderWriting() {
@@ -168,15 +337,19 @@
     const title = $("[data-writing-title]");
     const intro = $("[data-writing-intro]");
     const list = $("[data-writing-list]");
+    const moreWrap = $("[data-writing-more]");
+    const moreBtn = $("[data-writing-more-btn]");
 
     if (title) title.textContent = writing.title;
     if (intro) intro.textContent = writing.intro;
 
+    const initialVisible = writing.initialVisible ?? writing.entries.length;
+
     if (list) {
       list.innerHTML = writing.entries
         .map(
-          (entry) => `
-          <li>
+          (entry, i) => `
+          <li class="writing-list__item${i >= initialVisible ? " writing-list__item--collapsed" : ""}">
             <a href="${escapeHtml(entry.href)}" class="writing-entry" target="_blank" rel="noopener noreferrer">
               <div class="writing-entry__header">
                 <h3 class="text-h3 writing-entry__title">${escapeHtml(entry.title)}</h3>
@@ -190,22 +363,32 @@
         )
         .join("");
     }
+
+    if (moreWrap && moreBtn && writing.entries.length > initialVisible) {
+      moreWrap.hidden = false;
+      moreBtn.textContent = writing.showMoreLabel || "Show more";
+      moreBtn.addEventListener("click", () => {
+        list.querySelectorAll(".writing-list__item--collapsed").forEach((item) => {
+          item.classList.remove("writing-list__item--collapsed");
+        });
+        moreWrap.hidden = true;
+      });
+    }
   }
 
   function renderFooter() {
-    const { footer } = content;
+    const { footer, hero } = content;
 
     const contactLabel = $("[data-footer-contact-label]");
-    const email = $("[data-footer-email]");
+    const title = $("[data-footer-title]");
+    const role = $("[data-footer-role]");
     const links = $("[data-footer-links]");
-    const copyright = $("[data-footer-copyright]");
+
+    if (title) title.textContent = hero.title;
+
+    if (role) role.textContent = hero.eyebrow;
 
     if (contactLabel) contactLabel.textContent = footer.contactLabel;
-
-    if (email) {
-      email.textContent = footer.email;
-      email.href = `mailto:${footer.email}`;
-    }
 
     if (links) {
       links.innerHTML = footer.links
@@ -215,57 +398,6 @@
         )
         .join("");
     }
-
-    if (copyright) copyright.textContent = footer.copyright;
-  }
-
-  function initMobileMenu() {
-    const toggle = $("[data-nav-toggle]");
-    const overlay = $("[data-nav-overlay]");
-
-    if (!toggle || !overlay) return;
-
-    function closeMenu() {
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.setAttribute("aria-label", "Open menu");
-      overlay.classList.remove("is-open");
-    }
-
-    function openMenu() {
-      toggle.setAttribute("aria-expanded", "true");
-      toggle.setAttribute("aria-label", "Close menu");
-      overlay.classList.add("is-open");
-    }
-
-    toggle.addEventListener("click", () => {
-      const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-
-    overlay.addEventListener("click", (e) => {
-      if (e.target.matches(".site-nav__overlay-link")) {
-        closeMenu();
-      }
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
-        closeMenu();
-        toggle.focus();
-      }
-    });
-
-    document.addEventListener("click", (e) => {
-      if (toggle.getAttribute("aria-expanded") !== "true") return;
-      const pill = toggle.closest(".site-nav__pill");
-      if (pill && !pill.contains(e.target)) {
-        closeMenu();
-      }
-    });
   }
 
   function initSmoothScroll() {
@@ -285,14 +417,15 @@
   }
 
   function init() {
-    renderNav();
     renderHero();
     renderBeliefs();
     renderWork();
+    renderReferences();
+    renderServices();
     renderAbout();
+    initAboutStack();
     renderWriting();
     renderFooter();
-    initMobileMenu();
     initSmoothScroll();
   }
 
